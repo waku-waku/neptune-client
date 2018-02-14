@@ -1,0 +1,67 @@
+
+
+const mongodb = require('mongodb')
+
+const MongoClient = mongodb.MongoClient
+const mongoUrl = 'mongodb://localhost:27017/' + 'nuxt_ssr';
+let i;
+
+console.log(mongoUrl);
+
+// Collections
+var collections = [
+	'users',
+	'friends',
+	'foods',
+	'likes',
+	'locations',
+	'tags',
+	'restaurants',
+	'settings',
+	'oauth_clients',
+	'oauth_access_tokens',
+	'oauth_refresh_tokens'
+];
+
+//Create some users
+var users = [
+	{
+		user_id: "",
+		device_token: "",
+		os_type: ""
+	}
+];
+
+MongoClient.connect(mongoUrl, function(err, db) {
+    if(err) {
+        console.log(err);
+    }
+    else {
+         mongoInsert(db, collections, {}, function(user_res) {
+            console.log(user_res);
+            db.close();
+        });
+    }
+
+    console.log('Disconnected from server successfully');
+});
+
+function mongoInsert(db, collections, data,cb) {
+
+	for(i=0; i<collections.length; i++) {
+	    var collection = db.collection(collections[i]);
+	    collection.insert(data, function(err, res) {
+	        if(err) {
+	            console.log(err);
+	        }
+	        else {
+	            console.log('Inserted into the ' + collections[i] + ' collection');
+	            if (i == collections.length-1) {
+	            	cb(res);
+	            	console.log("Done.");
+	            }
+	        }
+	    });
+	}
+}
+

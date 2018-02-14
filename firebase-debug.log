@@ -1,0 +1,49 @@
+[debug] [2018-01-28T11:18:30.054Z] ----------------------------------------------------------------------
+[debug] [2018-01-28T11:18:30.058Z] Command:       /Users/wakuwaku/.nvm/versions/node/v8.9.0/bin/node /Users/wakuwaku/.nvm/versions/node/v8.9.0/bin/firebase login --reauth
+[debug] [2018-01-28T11:18:30.058Z] CLI Version:   3.17.4
+[debug] [2018-01-28T11:18:30.058Z] Platform:      darwin
+[debug] [2018-01-28T11:18:30.058Z] Node Version:  v8.9.0
+[debug] [2018-01-28T11:18:30.059Z] Time:          Sun Jan 28 2018 20:18:30 GMT+0900 (JST)
+[debug] [2018-01-28T11:18:30.059Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=922360154&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2018-01-28T11:19:03.335Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ { code: '4/th1kyXkxHL89eqZ8vT_oDkNF0jM3yapeXlyPJUgdVhM',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  redirect_uri: 'http://localhost:9005',
+  grant_type: 'authorization_code' } 
+ Sun Jan 28 2018 20:19:03 GMT+0900 (JST)
+[debug] [2018-01-28T11:20:03.556Z] Token Fetch Error: Error
+    at new FirebaseError (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/lib/error.js:11:17)
+    at Request._callback (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/lib/api.js:34:23)
+    at self.callback (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/node_modules/request/request.js:186:22)
+    at emitOne (events.js:116:13)
+    at Request.emit (events.js:211:7)
+    at Request.onRequestError (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/node_modules/request/request.js:878:8)
+    at emitOne (events.js:116:13)
+    at ClientRequest.emit (events.js:211:7)
+    at ClientRequest.onError (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/node_modules/tunnel-agent/index.js:179:21)
+    at Object.onceWrapper (events.js:315:30)
+[debug] [2018-01-28T11:21:10.209Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ { code: '4/tv1JMO4djnnkvTrdgKCK3_boA2wOs_Xw2OvWkxuqcyU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  redirect_uri: 'http://localhost:9005',
+  grant_type: 'authorization_code' } 
+ Sun Jan 28 2018 20:21:10 GMT+0900 (JST)
+[debug] [2018-01-28T11:22:10.762Z] Token Fetch Error: Error
+    at new FirebaseError (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/lib/error.js:11:17)
+    at Request._callback (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/lib/api.js:34:23)
+    at self.callback (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/node_modules/request/request.js:186:22)
+    at emitOne (events.js:116:13)
+    at Request.emit (events.js:211:7)
+    at Request.onRequestError (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/node_modules/request/request.js:878:8)
+    at emitOne (events.js:116:13)
+    at ClientRequest.emit (events.js:211:7)
+    at ClientRequest.onError (/Users/wakuwaku/.nvm/versions/node/v8.9.0/lib/node_modules/firebase-tools/node_modules/tunnel-agent/index.js:179:21)
+    at Object.onceWrapper (events.js:315:30)

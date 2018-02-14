@@ -1,0 +1,95 @@
+#!/usr/bin/env node
+
+'use strict';
+
+/*
+ * cheerio-httpcli
+ */
+
+// var cheerioClient = require('cheerio-httpcli');
+
+// cheerioClient.fetch('http://www.google.com/search', { q: 't-repo' }, function (err, $, res) {
+// 	// レスポンスヘッダを参照
+// 	console.log(res.headers);
+
+// 	// HTMLタイトルを表示
+// 	console.log($('title').text());
+
+// 	// リンク一覧を表示
+// 	$('a').each(function (idx) {
+// 	    console.log($(this).attr('href'));
+// 	});
+// });
+
+/*
+ * chromy
+ */
+
+const Chromy = require('chromy')
+
+// (async () => {
+// 	let chromy = new Chromy()
+
+// 	await chromy.blockUrls(['*.ttf', '*.gif', '*.png', '*.jpg', '*.jpeg', '*.webp'])
+// 	await chromy.goto('http://localhost')
+// 	const urls = await chromy.evaluate(() => {
+// 		let urls = []
+// 		document.querySelectorAll("#main .columns section .restaurant-list div .restaurants li").forEach(item => {
+// 		  // urls.push('http://qiita.com/' + item.getAttribute('href'));
+// 		  console.log(item)
+// 		})
+// 		return urls
+// 	})
+// })();
+
+async function scrap() {
+  let chromy = new Chromy({
+  	chromeFlags: [' --proxy-server="http://cproxy.okinawa-ct.ac.jp:8080"']
+  })
+
+  await chromy.blockUrls(['*.ttf', '*.gif', '*.png', '*.jpg', '*.jpeg', '*.webp'])
+  await chromy.goto('http://localhost')
+  const urls = await chromy.evaluate(() => {
+	let urls = []
+	// document.querySelectorAll("#main .columns .columns__item--restaurants .restaurant-list div .restaurants:nth-child(0) .restaurant .restaurant__content .restaurant__detail a").forEach(item => {
+	//   // urls.push('http://qiita.com/' + item.getAttribute('href'));
+	//   console.log(item.getAttribute('href'))
+	// })
+	document.querySelectorAll("#main .tableList .media .ItemLink__title a").forEach(item => {
+      urls.push('http://qiita.com/' + item.getAttribute('href'));
+    })
+	return urls
+  })
+
+  console.log("ss")
+  console.log(urls)
+
+
+  // for(let url of urls){
+  //   await chromy.goto(url)
+  //   let json = await chromy.evaluate(() => {
+
+  //     let title = document.querySelector("h1.ArticleMainHeader__title").innerHTML
+
+  //     let tags = []
+  //     document.querySelectorAll("#main .TagList a span").forEach(elem => {
+  //       tags.push(elem.innerHTML)
+  //     })
+
+  //     let date = document.querySelector(".container .ArticleAsideHeader__date span time").getAttribute('datetime')
+
+  //     return {
+  //       title: title,
+  //       tags: tags,
+  //       date: date,
+  //     }
+
+  //   })
+  //   console.log(json)
+  // }
+
+  await chromy.close()
+
+}
+
+scrap()

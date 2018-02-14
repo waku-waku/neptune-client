@@ -1,0 +1,21 @@
+# Environment
+.env
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Express build
+build/*
+
+# Other
+.firebaserc
+.firebase-debug.log
