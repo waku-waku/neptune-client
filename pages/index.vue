@@ -2,8 +2,8 @@
   <section class="top">
     <div class="container">
       <div class="top-menu">
-        <a href="#">トップ</a>
-        <a  class="active" @click="trend">トレンド</a>
+        <a v-bind:class="{ top_active: isTopActive }" @click="top">トップ</a>
+        <a v-bind:class="{ trend_active: isTrendActive }" @click="trend">トレンド</a>
       </div>
 
       <section v-if="recipes.length" class="recipe-list">
@@ -97,23 +97,38 @@ export default {
   },
   data () {
     return {
-      recipes: []
+      recipes: [],
+      isTopActive: true,
+      isTrendActive: false
     }
   },
   mounted () {
-    this.loadRecipeList()
+    let boosted = this.$route.query.boosted
+
+    if (boosted) {
+      this.isTrendActive = true
+      this.isTopActive = false
+    } else {
+      this.isTrendActive = false
+      this.isTopActive = true
+    }
+
+    this.loadRecipeList(boosted)
   },
   methods: {
     ...mapActions(['loadRecipeList']),
-    loadRecipeList: function () {
+    async loadRecipeList (boosted) {
       let vm = this
-      this.$store.dispatch('loadRecipeList')
+      this.$store.dispatch('loadRecipeList', boosted)
         .then(function (result) {
           vm.recipes = vm.getRecipeList
         })
     },
+    async top () {
+      this.$nuxt.$router.replace({ path: '/' })
+    },
     async trend () {
-
+      this.$nuxt.$router.replace({ path: '/?boosted=true' })
     }
   }
 }
@@ -127,6 +142,16 @@ export default {
   flex-flow: row wrap;
   align-items: flex-start;
   max-width: 100%;
+}
+
+.top_active {
+  background: #91e0cd;
+  color: #fff !important;
+}
+
+.trend_active {
+  background: #91e0cd;
+  color: #fff !important;
 }
 
 .top {

@@ -31,20 +31,31 @@ export default {
   //   })
   // },
 
-  loadRecipeList ({ commit, state }) {
+  loadRecipeList ({ commit, state }, boosted) {
     return new Promise((resolve, reject) => {
-      axios({
-        method: 'get',
-        url: 'http://localhost:3000/api/v1/recipes'
-        // withCredentials: true
-        // headers: {
-        //   'Authorization': `Bearer ${state.user.token}`
-        // }
-      }).then(function (response) {
-        let recipes = response.data
-        commit('setRecipes', { recipes })
-        resolve(recipes)
-      }).catch(reject)
+      if (boosted) {
+        axios({
+          method: 'get',
+          url: `http://localhost:3000/api/v1/recipes?boosted=${boosted}`
+          // withCredentials: true
+          // headers: {
+          //   'Authorization': `Bearer ${state.user.token}`
+          // }
+        }).then(function (response) {
+          let recipes = response.data
+          commit('setRecipes', { recipes })
+          resolve(recipes)
+        }).catch(reject)
+      } else {
+        axios({
+          method: 'get',
+          url: 'http://localhost:3000/api/v1/recipes'
+        }).then(function (response) {
+          let recipes = response.data
+          commit('setRecipes', { recipes })
+          resolve(recipes)
+        }).catch(reject)
+      }
     })
   },
 

@@ -100,7 +100,12 @@ export default {
       try {
         await this.createRecipe({recipe: vm.recipe, instructions: vm.instructions, ingredients: vm.ingredients})
           .then(function (result) {
+            localStorage.removeItem('instructions')
             localStorage.removeItem('ingredients')
+            localStorage.removeItem('recipe')
+            localStorage.removeItem('newInstruction')
+            localStorage.removeItem('newIngredientName')
+            localStorage.removeItem('newIngredientQuantity')
             vm.$nuxt.$router.replace({ path: '/' })
           })
       } catch (e) {
